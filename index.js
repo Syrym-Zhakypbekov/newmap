@@ -7,8 +7,18 @@ let service;
 let markers = [];
 let markers2 = [];
 let arrayOne = [];
+setInterval(() => {
+  console.log(arrayOne);
+}, 1000);
 let arrayTwo = [];
+// setInterval(() => {
+//   console.log(arrayTwo)
+// }, 1000);
 let flightPaths = [];
+setInterval(() => {
+  // console.log(flightPaths);
+}, 1000);
+
 let arr = [
   "Aktau",
   "Aktobe",
@@ -127,7 +137,7 @@ function initMap() {
           div.children[i].style.backgroundColor = "LightSalmon";
           i++;
         }
-        if (e.keyCode === 13) {
+        if (e.keyCode === 13 && arrayOne.length < 1) {
           e.target.value = div.children[i - 1].innerText;
 
           /* SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE */
@@ -189,31 +199,33 @@ function initMap() {
           (e) => {
             input.value = e.target.innerText;
 
-            /* SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE */
+            if (arrayOne.length < 1) {
+              /* SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE */
 
-            service.findPlaceFromQuery(
-              {
-                query: e.target.innerText,
-                fields: ["name", "geometry"],
-              },
-              (results, status) => {
-                if (
-                  status === google.maps.places.PlacesServiceStatus.OK &&
-                  results
-                ) {
-                  marker = new google.maps.Marker({
-                    map,
-                    position: results[0].geometry.location,
-                  });
-                  arrayOne.push(results[0].geometry.location);
-                  map.setCenter(results[0].geometry.location);
-                  markers.push(marker);
+              service.findPlaceFromQuery(
+                {
+                  query: e.target.innerText,
+                  fields: ["name", "geometry"],
+                },
+                (results, status) => {
+                  if (
+                    status === google.maps.places.PlacesServiceStatus.OK &&
+                    results
+                  ) {
+                    marker = new google.maps.Marker({
+                      map,
+                      position: results[0].geometry.location,
+                    });
+                    arrayOne.push(results[0].geometry.location);
+                    map.setCenter(results[0].geometry.location);
+                    markers.push(marker);
+                  }
                 }
-              }
-            );
+              );
 
-            /* SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE */
-            div.textContent = "";
+              /* SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE */
+              div.textContent = "";
+            }
           },
           false
         );
@@ -222,30 +234,32 @@ function initMap() {
       if (result.length === 1) {
         e.target.value = result;
 
-        /* SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE */
-        service.findPlaceFromQuery(
-          {
-            query: e.target.value,
-            fields: ["name", "geometry"],
-          },
-          (results, status) => {
-            if (
-              status === google.maps.places.PlacesServiceStatus.OK &&
-              results
-            ) {
-              marker = new google.maps.Marker({
-                map,
-                position: results[0].geometry.location,
-              });
-              arrayOne.push(results[0].geometry.location);
-              map.setCenter(results[0].geometry.location);
-              markers.push(marker);
+        if (e.keyCode === 13 && arrayOne.length < 1) {
+          /* SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE */
+          service.findPlaceFromQuery(
+            {
+              query: e.target.value,
+              fields: ["name", "geometry"],
+            },
+            (results, status) => {
+              if (
+                status === google.maps.places.PlacesServiceStatus.OK &&
+                results
+              ) {
+                marker = new google.maps.Marker({
+                  map,
+                  position: results[0].geometry.location,
+                });
+                arrayOne.push(results[0].geometry.location);
+                map.setCenter(results[0].geometry.location);
+                markers.push(marker);
+              }
             }
-          }
-        );
+          );
 
-        /* SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE */
-        div.textContent = "";
+          /* SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE */
+          div.textContent = "";
+        }
       }
     },
     false
@@ -260,6 +274,7 @@ function initMap() {
         setMapOnAll2(null);
         input2.value = "";
         div.textContent = "";
+        arrayOne = [];
       }
       function deleteMarkers() {
         hideMarkers();
@@ -276,6 +291,7 @@ function initMap() {
         setMapOnAll2(null);
         input2.value = "";
         div.textContent = "";
+        arrayOne = [];
       }
       function deleteMarkers() {
         hideMarkers();
@@ -291,6 +307,7 @@ function initMap() {
       function hideMarkers() {
         setMapOnAll(null);
         setMapOnAll2(null);
+        arrayOne = [];
       }
       function deleteMarkers() {
         hideMarkers();
@@ -305,6 +322,7 @@ function initMap() {
       function hideMarkers() {
         setMapOnAll(null);
         setMapOnAll2(null);
+        arrayOne = [];
       }
       function deleteMarkers() {
         hideMarkers();
@@ -321,6 +339,7 @@ function initMap() {
       function hideMarkers() {
         setMapOnAll(null);
         setMapOnAll2(null);
+        arrayOne = [];
       }
       function deleteMarkers() {
         hideMarkers();
@@ -334,6 +353,7 @@ function initMap() {
       function hideMarkers() {
         setMapOnAll(null);
         setMapOnAll2(null);
+        arrayOne = [];
       }
       function deleteMarkers() {
         hideMarkers();
@@ -349,6 +369,7 @@ function initMap() {
       function hideMarkers() {
         setMapOnAll(null);
         setMapOnAll2(null);
+        arrayOne = [];
       }
       function deleteMarkers() {
         hideMarkers();
@@ -362,6 +383,7 @@ function initMap() {
       function hideMarkers() {
         setMapOnAll(null);
         setMapOnAll2(null);
+        arrayOne = [];
       }
       function deleteMarkers() {
         hideMarkers();
@@ -712,137 +734,200 @@ function initMap() {
       }
 
       if (result2.length === 1) {
-        e.target.value = result2;
+        e.target.value = div2.lastElementChild.innerText;
 
-        /* SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE */
-        service.findPlaceFromQuery(
-          {
-            query: e.target.value,
-            fields: ["name", "geometry"],
-          },
-          (results, status) => {
-            if (
-              status === google.maps.places.PlacesServiceStatus.OK &&
-              results
-            ) {
-              marker2 = new google.maps.Marker({
-                map,
-                position: results[0].geometry.location,
-              });
-              arrayTwo.push(results[0].geometry.location);
-              map.setCenter(results[0].geometry.location);
-              markers2.push(marker2);
+        if (e.keyCode === 13 && flightPaths.length < 1) {
+          /* SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE */
+          service.findPlaceFromQuery(
+            {
+              query: e.target.value,
+              fields: ["name", "geometry"],
+            },
+            (results, status) => {
+              if (
+                status === google.maps.places.PlacesServiceStatus.OK &&
+                results
+              ) {
+                marker2 = new google.maps.Marker({
+                  map,
+                  position: results[0].geometry.location,
+                });
+                arrayTwo.push(results[0].geometry.location);
+                map.setCenter(results[0].geometry.location);
+                markers2.push(marker2);
 
-              const flightPlanCoordinates = [
-                arrayOne[arrayOne.length - 1].toJSON(),
-                results[0].geometry.location,
-              ];
+                const flightPlanCoordinates = [
+                  arrayOne[arrayOne.length - 1].toJSON(),
+                  results[0].geometry.location,
+                ];
 
-              const flightPath = new google.maps.Polyline({
-                path: flightPlanCoordinates,
-                geodesic: true,
-                strokeColor: "#FF0000",
-                strokeOpacity: 1.0,
-                strokeWeight: 2,
-              });
+                const flightPath = new google.maps.Polyline({
+                  path: flightPlanCoordinates,
+                  geodesic: true,
+                  strokeColor: "#FF0000",
+                  strokeOpacity: 1.0,
+                  strokeWeight: 2,
+                });
 
-              flightPaths.push(flightPath);
+                flightPaths.push(flightPath);
+                console.log(flightPaths);
+                console.log(flightPaths.length);
 
-              flightPath.setMap(map);
+                flightPath.setMap(map);
 
-              input2.oninput = (e) => {
-                if (e.target.value === "") {
-                  flightPath.setMap(null);
-                }
-                if (arrayOne.length === 0) {
-                  flightPath.setMap(null);
-                }
-              };
+                // flightPaths.slice(-1).setMap(map);
+                /*
+                let arry = [2, 4, 6, 8, 10, 12, 14, 16];
+                console.time("array length property");
+                let lastElement = arry[arry.length - 1];
+                console.log(lastElement);
+                console.timeEnd("array length property");
+                */
+                /*
+                console.time("array slice method");
+                let lastElement1 = arry.slice(-1);
+                console.log(lastElement1);
+                console.timeEnd("array slice method");
+                */
+                /*
+                console.time("array pop method");
+                let lastElement2 = arry.pop();
+                console.log(lastElement2);
+                console.timeEnd("array pop method");
+                */
 
-              input2.onchange = (e) => {
-                if (e.target.value === "") {
-                  flightPath.setMap(null);
-                }
-                if (arrayOne.length === 0) {
-                  flightPath.setMap(null);
-                }
-              };
-              input2.onkeydown = (e) => {
-                if (e.target.value === "") {
-                  flightPath.setMap(null);
-                }
-                if (arrayOne.length === 0) {
-                  flightPath.setMap(null);
-                }
-              };
-              input2.onkeyup = (e) => {
-                if (e.target.value === "") {
-                  flightPath.setMap(null);
-                }
-                if (arrayOne.length === 0) {
-                  flightPath.setMap(null);
-                }
-              };
-              input2.onkeypress = (e) => {
-                if (e.target.value === "") {
-                  flightPath.setMap(null);
-                }
-                if (arrayOne.length === 0) {
-                  flightPath.setMap(null);
-                }
-              };
-              input.oninput = (e) => {
-                if (e.target.value === "") {
-                  flightPath.setMap(null);
-                  arrayOne = [];
-                }
-                if (arrayOne.length === 0) {
-                  flightPath.setMap(null);
-                }
-              };
+                // flightPaths[flightPaths.length - 1].setMap(map);
 
-              input.onchange = (e) => {
-                if (e.target.value === "") {
-                  flightPath.setMap(null);
-                  arrayOne = [];
-                }
-                if (arrayOne.length === 0) {
-                  flightPath.setMap(null);
-                }
-              };
-              input.onkeydown = (e) => {
-                if (e.target.value === "") {
-                  flightPath.setMap(null);
-                  arrayOne = [];
-                }
-                if (arrayOne.length === 0) {
-                  flightPath.setMap(null);
-                }
-              };
-              input.onkeyup = (e) => {
-                if (e.target.value === "") {
-                  flightPath.setMap(null);
-                  arrayOne = [];
-                }
-                if (arrayOne.length === 0) {
-                  flightPath.setMap(null);
-                }
-              };
-              input.onkeypress = (e) => {
-                if (e.target.value === "") {
-                  flightPath.setMap(null);
-                  arrayOne = [];
-                }
-                if (arrayOne.length === 0) {
-                  flightPath.setMap(null);
-                }
-              };
+                // flightPaths.slice(-1).setMap(map);
+
+                input2.oninput = (e) => {
+                  if (e.target.value === "") {
+                    try {
+                      flightPaths[0].setMap(null);
+                    } catch (error) {}
+
+                    flightPaths = [];
+                  }
+                  if (arrayOne.length === 0) {
+                  }
+                };
+
+                input2.onchange = (e) => {
+                  if (e.target.value === "") {
+                    try {
+                      flightPaths[0].setMap(null);
+                    } catch (error) {}
+
+                    flightPaths = [];
+                  }
+                  if (arrayOne.length === 0) {
+                  }
+                };
+                input2.onkeydown = (e) => {
+                  if (e.target.value === "") {
+                    // flightPaths[0].setMap(null);
+                    try {
+                      flightPaths[0].setMap(null);
+                    } catch (error) {}
+
+                    flightPaths = [];
+                  }
+                  if (arrayOne.length === 0) {
+                    // flightPaths[0].setMap(null);
+                    try {
+                      flightPaths[0].setMap(null);
+                    } catch (error) {}
+
+                    flightPaths = [];
+                  }
+                };
+                input2.onkeyup = (e) => {
+                  if (e.target.value === "") {
+                    // flightPaths[0].setMap(null);
+                    try {
+                      flightPaths[0].setMap(null);
+                    } catch (error) {}
+
+                    flightPaths = [];
+                  }
+                  if (arrayOne.length === 0) {
+                    // flightPaths[0].setMap(null);
+                  }
+                };
+                input2.onkeypress = (e) => {
+                  if (e.target.value === "") {
+                    // flightPaths[0].setMap(null);
+                    try {
+                      flightPaths[0].setMap(null);
+                    } catch (error) {}
+
+                    flightPaths = [];
+                  }
+                  if (arrayOne.length === 0) {
+                    // flightPaths[0].setMap(null);
+                  }
+                };
+                input.oninput = (e) => {
+                  if (e.target.value === "") {
+                    try {
+                      flightPaths[0].setMap(null);
+                    } catch (error) {}
+
+                    flightPaths = [];
+                  }
+                  if (arrayOne.length === 0) {
+                  }
+                };
+
+                input.onchange = (e) => {
+                  if (e.target.value === "") {
+                    try {
+                      flightPaths[0].setMap(null);
+                    } catch (error) {}
+
+                    flightPaths = [];
+                  }
+                  if (arrayOne.length === 0) {
+                  }
+                };
+                input.onkeydown = (e) => {
+                  if (e.target.value === "") {
+                    try {
+                      flightPaths[0].setMap(null);
+                    } catch (error) {}
+
+                    flightPaths = [];
+                  }
+                  if (arrayOne.length === 0) {
+                  }
+                };
+                input.onkeyup = (e) => {
+                  if (e.target.value === "") {
+                    try {
+                      flightPaths[0].setMap(null);
+                    } catch (error) {}
+
+                    flightPaths = [];
+                  }
+                  if (arrayOne.length === 0) {
+                  }
+                };
+                input.onkeypress = (e) => {
+                  if (e.target.value === "") {
+                    try {
+                      flightPaths[0].setMap(null);
+                    } catch (error) {}
+
+                    flightPaths = [];
+                  }
+                  if (arrayOne.length === 0) {
+                  }
+                };
+              }
             }
-          }
-        );
-
-        /* SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE SERVICE */
-        div2.textContent = "";
+          );
+          div2.textContent = "";
+        }
       }
     },
     false
