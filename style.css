@@ -1,101 +1,66 @@
+* {
+  /* border: 1px dotted black; */
+}
+
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+  height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
 html,
 body {
-  width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-#map {
-  width: 100%;
+.container {
+  position: relative;
+}
+
+#input{
+  padding: 10px;
+  width: 95%;
   height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  font-weight: bolder;
 }
 
-#div {
-  position: absolute;
-  top: 1%;
-  left: 10%;
-  background-color: rgb(217, 225, 231);
-  height: 100px;
-  width: 220px;
+#input2{
+  padding: 10px;
+  width: 95%;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+#dropdown {
+  background-color: white;
+  padding: 2%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 160%;
+  /* margin-right: 2.9%; */
   
 }
 
-#firstInput {
-  position: absolute;
-  top: 1%;
-  left: 10%;
-  height: 6%;
-  padding: 1%;
-  font-size: 150%;
-}
-#secondInput{
-  position: absolute;
-  top: 1%;
-  left: 50%;
-  height: 6%;
-  padding: 1%;
-  font-size: 150%;
-}
-#div2 {
-  position: absolute;
-  top: 1%;
-  left: 10%;
-  background-color: rgb(217, 225, 231);
-  
-  width: 220px;
+#dropdown2 {
+  background-color: white;
+  padding: 2%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 160%;
+  /* margin-left: 3.6%; */
 }
 
-#hideThis {
-    position: absolute;
-    /* display: none; */
-    width: 17.2%;
-    height: 200px;
-    top: 8%;
-    left: 10%;
-    overflow-y: auto;
-}
-
-#hideThis2 {
-  position: absolute;
-  /* display: none; */
-  height: 200px;
-  width: 17.2%;
-  top: 8%;
-  left: 50%;
+#col1row1 {
   overflow-y: auto;
+  height: 225px;
 }
 
-#myCounter {
-    position: absolute;
-    top: 10px;
-    left: 190px;
-}
-
-
-
-#reloadExample {
-    position: absolute;
-    top: 50px;
-    left: 200px;
-}
-
-#yourDiv{
-    position: absolute;
-    top: 30px;
-    left: 200px;
-}
-
-#colorIt{
-  background-color: white;
-  padding: 2%;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 160%;
-}
-
-#colorIt2{
-  background-color: white;
-  padding: 2%;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 160%;
+#col1row2 {
+  overflow-y: auto;
+  height: 225px;
 }
